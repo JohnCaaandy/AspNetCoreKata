@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+using System.Collections.Generic;
 
 namespace AspCoreNetKata.Shared
 {
-    public class Class1
+    public interface IProductRepository
     {
+        IEnumerable<Product> GetAllProducts();
     }
 }

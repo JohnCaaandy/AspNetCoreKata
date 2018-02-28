@@ -7,8 +7,8 @@ namespace AspNetCoreKata.Models
 {
     public class Person
     {
-        public static string Name {get; set;}
-        public static int Age { get; set; }
+        public string Name {get; set;}
+        public int Age { get; set; }
         public bool isMinor => Age >= 18;
     }
 }
