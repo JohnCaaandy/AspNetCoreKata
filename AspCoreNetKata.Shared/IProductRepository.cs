@@ -6,5 +6,6 @@ namespace AspCoreNetKata.Shared
     public interface IProductRepository
     {
         IEnumerable<Product> GetAllProducts();
+        Product GetProductWithId(int id);
     }
 }

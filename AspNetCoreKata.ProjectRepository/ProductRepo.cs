@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using AspCoreNetKata.Shared;
 using Dapper;
 
@@ -14,6 +15,7 @@ namespace AspNetCoreKata.ProjectRepository
         {
             _connection = conn;
         }
+
         public IEnumerable<Product> GetAllProducts()
         {
             using (var conn = _connection)
@@ -21,7 +23,15 @@ namespace AspNetCoreKata.ProjectRepository
                 conn.Open();
                 return conn.Query<Product>("SELECT Name, ProductId as Id FROM Product");
             }
-                throw new NotImplementedException();
+        }
+
+        public Product GetProductWithId(int id)
+        {
+            using (var conn = _connection)
+            {
+                conn.Open();
+                return conn.Query<Product>("SELECT Name, ProductId as Id FROM Product where ProductId= @id", new {id}).FirstOrDefault();
+            }
         }
     }
 }

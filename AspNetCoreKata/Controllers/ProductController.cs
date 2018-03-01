@@ -22,7 +22,8 @@ namespace AspNetCoreKata.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            var prod = _repo.GetProductWithId(id);
+            return View(prod);
         }
 
         // GET: Product/Create
