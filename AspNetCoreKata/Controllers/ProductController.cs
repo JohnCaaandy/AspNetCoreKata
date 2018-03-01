@@ -52,7 +52,8 @@ namespace AspNetCoreKata.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var prod = _repo.GetProductWithId(id);
+            return View(prod);
         }
 
         // POST: Product/Edit/5
@@ -75,7 +76,8 @@ namespace AspNetCoreKata.Controllers
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var prod = _repo.GetProductWithId(id);
+            return View(prod);
         }
 
         // POST: Product/Delete/5
