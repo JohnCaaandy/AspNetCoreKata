@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreKata.ProjectRepository;
+using System;
 
 namespace AspNetCoreKata.Controllers
 {
@@ -61,16 +62,11 @@ namespace AspNetCoreKata.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var prod = new Product
+                {Id = id,   Name = collection["Name"] };
+            _repo.UpdateProduct(prod);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction(nameof(Index)); 
         }
 
         // GET: Product/Delete/5

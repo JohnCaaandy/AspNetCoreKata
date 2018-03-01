@@ -30,7 +30,18 @@ namespace AspNetCoreKata.ProjectRepository
             using (var conn = _connection)
             {
                 conn.Open();
-                return conn.Query<Product>("SELECT Name, ProductId as Id FROM Product where ProductId= @id", new {id}).FirstOrDefault();
+                return conn.Query<Product>("SELECT Name, ProductId as Id FROM Product where ProductId= @id", new { id })
+                    .FirstOrDefault();
+            }
+        }
+
+        public void UpdateProduct(Product prod)
+        {
+            using (var conn = _connection)
+            {
+                conn.Open();
+                conn.Execute("UPDATE product SET Name = @name WHERE ProductID = @id",
+                    new { id = prod.Id, name = prod.Name });
             }
         }
     }
