@@ -8,5 +8,6 @@ namespace AspCoreNetKata.Shared
         IEnumerable<Product> GetAllProducts();
         Product GetProductWithId(int id);
         void UpdateProduct(Product prod);
+        void DeleteProductWithId(int id);
     }
 }

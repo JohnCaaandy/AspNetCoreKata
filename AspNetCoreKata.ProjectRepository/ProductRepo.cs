@@ -40,8 +40,17 @@ namespace AspNetCoreKata.ProjectRepository
             using (var conn = _connection)
             {
                 conn.Open();
-                conn.Execute("UPDATE product SET Name = @name WHERE ProductID = @id",
+                conn.Execute("UPDATE product SET Name = @name WHERE ProductId = @id",
                     new { id = prod.Id, name = prod.Name });
+            }
+        }
+
+        public void DeleteProductWithId(int id)
+        {
+            using (var conn = _connection)
+            {
+                conn.Open();
+                conn.Execute("DELETE FROM product WHERE ProductId=@id", new {id});
             }
         }
     }

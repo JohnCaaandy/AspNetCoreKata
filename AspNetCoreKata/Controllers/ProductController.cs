@@ -81,16 +81,8 @@ namespace AspNetCoreKata.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+          _repo.DeleteProductWithId(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
