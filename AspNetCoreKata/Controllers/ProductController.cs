@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AspCoreNetKata.Shared;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreKata.ProjectRepository;
 
@@ -6,13 +7,19 @@ namespace AspNetCoreKata.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
-        public ActionResult Index()
+        private readonly IProductRepository _repo;
+
+        public ProductController(IProductRepository repo)
         {
-            return View();
+            _repo = repo;
         }
 
-        // GET: Product/Details/5
+        public ActionResult Index()
+        {
+            var prods = _repo.GetAllProducts();
+            return View(prods);
+        }
+
         public ActionResult Details(int id)
         {
             return View();
