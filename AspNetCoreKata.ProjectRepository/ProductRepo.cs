@@ -45,6 +45,15 @@ namespace AspNetCoreKata.ProjectRepository
             }
         }
 
+        public void CreateProduct(string name)
+        {
+            using (var conn = _connection)
+            {
+                conn.Open();
+                conn.Execute("INSERT INTO product (Name) VALUES (@name)", new {name});
+            }
+
+        }
         public void DeleteProductWithId(int id)
         {
             using (var conn = _connection)
